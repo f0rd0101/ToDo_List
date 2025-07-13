@@ -6,6 +6,14 @@
          <li>
            <h2>{{ $task->title }}</h2>
            <p>{{ $task->content }}</p>
+           <form action="{{ route('tasks.delete', $task->id) }}" method = "post">
+            @csrf
+            @method('DELETE')
+            <input type="submit" value = 'Delete' class = 'btn btn-danger'>
+           </form>
+        
+           
+
          </li>
         @endforeach
     </ul>
