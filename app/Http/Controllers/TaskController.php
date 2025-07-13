@@ -10,7 +10,16 @@ class TaskController extends Controller
 {
   public function index(){
     $tasks = Task::all();
-    return view('tasks', compact('tasks'));
+    return view('task.index', compact('tasks'));
     
   }
+  public function store(){
+     $data = request()->validate([
+        'title' => 'string',
+        'content' =>'string'
+     ]);
+     Task::create($data);
+     return redirect()->route('tasks.index');
+  }
+ 
 }
