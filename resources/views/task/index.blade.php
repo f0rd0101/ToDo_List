@@ -6,6 +6,7 @@
          <li>
            <h2>{{ $task->title }}</h2>
            <p>{{ $task->content }}</p>
+           <a href="{{ route('tasks.edit', $task->id) }}" class="btn btn-primary">Edit</a>
            <form action="{{ route('tasks.delete', $task->id) }}" method = "post">
             @csrf
             @method('DELETE')

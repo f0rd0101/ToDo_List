@@ -25,5 +25,16 @@ class TaskController extends Controller
     $task->delete();
     return redirect()->route('tasks.index');
   }
+  public function edit(Task $task){
+      return view('task.edit', compact('task'));
+  }
+  public function update(Task $task){
+    $data = request()->validate([
+      'title'=> 'string',
+      'content'=>'string'
+    ]);
+    $task->update($data);
+    return redirect()->route('tasks.index');
+  }
  
 }
