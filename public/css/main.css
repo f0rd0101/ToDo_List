@@ -52,3 +52,16 @@ ul{
   display: flex;
 }
 
+
+.form-group{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+    align-items: center;
+    flex-direction: column;
+}
+.btn-update{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

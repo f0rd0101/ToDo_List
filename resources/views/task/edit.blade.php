@@ -6,12 +6,13 @@
   <div class="form-group">
     <label>Task Name</label>
     <input  name="title" class="form-control" id="exampleInputEmail1"  placeholder="Enter task name" value = "{{ $task->title }}">
-    
-  </div>
-  <div class="form-group">
+
     <label>Content</label>
     <input name="content" class="form-control"  id="exampleInputPassword1" placeholder="Add details" value = "{{ $task->content}}">
   </div>
-  <button type="submit" class="btn btn-primary">Update</button>
+  <div class="btn-update">
+  <button type="submit" class="btn btn-primary btn-update">Update</button>
+  </div>
+
 </form>
 @endsection
