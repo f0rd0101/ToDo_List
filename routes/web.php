@@ -6,7 +6,9 @@ use App\Http\Controllers\TaskController;
 
 
 Route::get('/', function () {
-    return redirect('/tasks');
+    return auth()->check() 
+    ? redirect('/tasks') 
+    : redirect('/login');
 });
 
 
@@ -22,7 +24,7 @@ Route::patch('/tasks/{task}',[TaskController::class, 'update'])->name('tasks.upd
 // AUTH ROUTES
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    return redirect('/tasks');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
