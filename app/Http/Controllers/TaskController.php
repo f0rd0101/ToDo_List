@@ -9,7 +9,7 @@ use  App\Models\Task;
 class TaskController extends Controller
 {
   public function index(){
-    $tasks = Task::all();
+    $tasks = auth()->user()->tasks()->latest()->get();
     return view('task.index', compact('tasks'));
     
   }
@@ -18,6 +18,8 @@ class TaskController extends Controller
         'title' => 'string',
         'content' =>'string'
      ]);
+      $data['user_id'] = auth()->id();
+
      Task::create($data);
      return redirect()->route('tasks.index');
   }
