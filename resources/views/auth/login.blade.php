@@ -2,7 +2,7 @@
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
 
-    <form method="POST" action="{{ route('login') }}" >
+    <form method="POST" action="{{ route('login') }}" style="display:flex; flex-direction:column; align-items:center">
         @csrf
 
         <!-- Email Address -->
@@ -26,8 +26,31 @@
 
         <!-- Remember Me -->
         <div class="block mt-4">
-            <label for="remember_me" class="inline-flex items-center">
-                <input id="remember_me" type="checkbox" class="rounded dark:bg-gray-900 border-gray-300 dark:border-gray-700 text-indigo-600 shadow-sm focus:ring-indigo-500 dark:focus:ring-indigo-600 dark:focus:ring-offset-gray-800" name="remember">
+            <label for="remember_me" class="inline-flex" >
+          <input id="remember_me" type="checkbox"
+  style="
+    border-radius: 0.25rem;
+    background-color: #111827;
+    border: 1px solid rgba(0,0,0,0.05);
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    cursor: pointer;
+    fill: transparent;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+  "
+  onclick="
+    if(this.checked){
+      this.style.backgroundColor = '#22c55e';
+      this.style.borderColor = '#22c55e';
+    } else {
+      this.style.backgroundColor = '#111827';
+      this.style.borderColor = 'rgba(0,0,0,0.05)';
+    }
+  "
+/>
+
                 <span class="ms-2 text-sm text-gray-600 dark:text-gray-400">{{ __('Remember me') }}</span>
             </label>
         </div>
