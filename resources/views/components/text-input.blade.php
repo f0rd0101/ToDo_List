@@ -1,4 +1,8 @@
+@props(['disabled' => false])
 <input
+{{ $attributes }} 
+@disabled($disabled)
+ 
   style="
     border: 1px solid #a0aec0; /* серый цвет по умолчанию */
     background-color: transparent;

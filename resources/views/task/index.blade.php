@@ -15,7 +15,19 @@
     <label>Content</label>
     <input name="content" class="form-control"  id="exampleInputPassword1" placeholder="Add details about the task">
   </div>
-  <button type="submit" class="btn btn-success d-block mx-auto mt-2">Add</button>
+  <button type="submit" class="d-block mx-auto mt-2" style="
+  background-color: #4bad4f;
+  border-radius: 6px;
+  padding: 8px 16px;
+  border: none;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 2px 6px rgba(75, 173, 79, 0.4);
+"
+  onmouseover="this.style.backgroundColor='#3a8c3f'; this.style.boxShadow='0 4px 12px rgba(58, 140, 63, 0.6)';"
+  onmouseout="this.style.backgroundColor='#4bad4f'; this.style.boxShadow='0 2px 6px rgba(75, 173, 79, 0.4)';"  >Add</button>
 </form>
 </div>
 <div class = "data-div">
@@ -25,11 +37,37 @@
            <h2>{{ $task->title }}</h2>
            <p class="content-p">{{ $task->content }}</p>
            <div class="buttons-div">
-           <a href="{{ route('tasks.edit', $task->id) }}" class="btn btn-primary">Edit</a>
+           <a href="{{ route('tasks.edit', $task->id) }}" class="btn" style="
+  background-color: #3b82f6;
+  border-radius: 6px;
+  padding: 8px 16px;
+  border: none;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 2px 6px rgba(59, 130, 246, 0.4);
+"
+onmouseover="this.style.backgroundColor='#2563eb'; this.style.boxShadow='0 4px 12px rgba(37, 99, 235, 0.6)';"
+onmouseout="this.style.backgroundColor='#3b82f6'; this.style.boxShadow='0 2px 6px rgba(59, 130, 246, 0.4)';"
+>Edit</a>
            <form action="{{ route('tasks.delete', $task->id) }}" method = "post">
             @csrf
             @method('DELETE')
-            <input type="submit" value = 'Delete' class = 'btn btn-danger'>
+            <input type="submit" value = 'Delete' class = 'btn' style="
+  background-color: #ef4444;
+  border-radius: 6px;
+  padding: 8px 16px;
+  border: none;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 2px 6px rgba(239, 68, 68, 0.4);
+"
+onmouseover="this.style.backgroundColor='#dc2626'; this.style.boxShadow='0 4px 12px rgba(220, 38, 38, 0.6)';"
+onmouseout="this.style.backgroundColor='#ef4444'; this.style.boxShadow='0 2px 6px rgba(239, 68, 68, 0.4)';"
+>
             </div>
            </form>
         
