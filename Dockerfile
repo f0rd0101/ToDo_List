@@ -1,9 +1,8 @@
 FROM php:8.2-fpm
 
-# Рабочая директория внутри контейнера
 WORKDIR /var/www
 
-# Установка необходимых зависимостей
+# Установка системных зависимостей и PHP-расширений
 RUN apt-get update && apt-get install -y \
     zip unzip curl git libxml2-dev libzip-dev libpng-dev libjpeg-dev libonig-dev \
     sqlite3 libsqlite3-dev \
@@ -12,14 +11,17 @@ RUN apt-get update && apt-get install -y \
 # Установка Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-# Копирование исходников
+# Копируем все файлы проекта
 COPY . /var/www
 
-# Установка прав доступа
+# Установка прав
 RUN chown -R www-data:www-data /var/www
 
-# Открываем порт
+# Установка зависимостей Laravel
+RUN composer install --no-dev --optimize-autoloader
+
+# Открываем порт (Render передаёт порт через переменную $PORT)
 EXPOSE 8000
 
-# Стартовая команда: ждём, пока база поднимется, и только потом запускаем Laravel
-CMD bash -c "composer install && php artisan key:generate && php artisan serve --host=0.0.0.0 --port=8000"
+# Запуск приложения на нужном порту (переменная $PORT задаётся Render)
+CMD bash -c "php artisan migrate --force && php artisan serve --host=0.0.0.0 --port=${PORT:-8000}"
