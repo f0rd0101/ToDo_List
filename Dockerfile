@@ -19,5 +19,11 @@ RUN composer install
 COPY .env.example .env
 RUN php artisan key:generate
 
+# ⬇️ Копируем entrypoint и делаем его исполняемым
+COPY entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+
 EXPOSE 8000
-CMD php artisan serve --host=0.0.0.0 --port=8000
+
+# ⬇️ Запускаем Laravel через entrypoint
+ENTRYPOINT ["/entrypoint.sh"]
