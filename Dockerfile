@@ -7,10 +7,10 @@ RUN composer install --no-dev --optimize-autoloader --no-scripts
 # Этап 2: Laravel + PHP + Nginx
 FROM php:8.2-fpm
 
-# Устанавливаем пакеты и расширения PHP
+# Устанавливаем пакеты и расширения PHP (MySQL + Postgres)
 RUN apt-get update && apt-get install -y \
-    nginx unzip git curl libpng-dev libonig-dev libxml2-dev zip \
-    && docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd
+    nginx unzip git curl libpng-dev libonig-dev libxml2-dev zip libpq-dev \
+    && docker-php-ext-install pdo_mysql pdo_pgsql mbstring exif pcntl bcmath gd
 
 # Настраиваем Nginx
 RUN rm /etc/nginx/sites-enabled/default
@@ -21,7 +21,7 @@ WORKDIR /var/www/html
 COPY . .
 COPY --from=composer_stage /app/vendor vendor
 
-# Права
+# Права на файлы и директории
 RUN chown -R www-data:www-data /var/www/html \
     && chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache
 
@@ -29,7 +29,7 @@ RUN chown -R www-data:www-data /var/www/html \
 COPY ./docker/start.sh /start.sh
 RUN chmod +x /start.sh
 
-# Порт
+# Порт для Nginx
 EXPOSE 80
 
 # Запуск
