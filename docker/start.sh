@@ -3,14 +3,10 @@ set -e
 
 echo "Running Laravel setup..."
 
-# Устанавливаем зависимости, которые требуют artisan
-composer dump-autoload --optimize
+# Только artisan команды
 php artisan package:discover --ansi
-
-# Выполняем миграции
 php artisan migrate --force
 
-# Чистим и кэшируем конфиги, роуты, вьюхи
 php artisan config:clear
 php artisan cache:clear
 php artisan route:clear
