@@ -44,6 +44,7 @@ input{
     display: flex;
     justify-content: center;
 }
+
 .buttons-div{
     display: flex;
     gap: 5px;
@@ -69,3 +70,11 @@ ul{
     justify-content: center;
     align-items: center;
 }
+
+.item-li h2, .item-li p {
+    display: block;           
+    text-align: center;       
+    word-wrap: break-word;    
+    overflow-wrap: break-word; 
+}
+
